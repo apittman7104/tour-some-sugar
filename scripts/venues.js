@@ -1,15 +1,16 @@
 import { getBands, getBookings, getVenues } from "./database.js";
 
 const venues = getVenues()
-const bookings = getBookings()
-const bands = getBands()
 
 document.addEventListener(
     "click",
     (clickEvent) => {
-        const clickTarget = clickEvent.target
-        let output = ""
+        const clickTarget = clickEvent.target 
         if (clickTarget.dataset.type === "venue") {
+            const bookings = getBookings()
+            const bands = getBands()
+            let output = ""
+
             for (const booking of bookings) {
                 if (booking.venueId === parseInt(clickTarget.dataset.id)) {
                     for (const band of bands) {
